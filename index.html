@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#071A2E">
 <link rel="manifest" href="./manifest.webmanifest">
-<title>Mi Plano Diario 2.0</title>
+<title>Mi Plano Diario 2.2</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
 :root{--bg:#071a2e;--panel:#0e3152;--panel2:#123b61;--line:rgba(145,215,235,.15);--text:#eef7fc;--muted:#91abc1;--cyan:#35d6d1;--cyan2:#70e6e2;--gold:#f5ba45;--goldsoft:rgba(245,186,69,.15);--green:#69d59c;--danger:#e77a69}
@@ -17,17 +17,8 @@ button,input{font:inherit}.top{display:flex;justify-content:space-between;align-
 .chart{height:135px;display:flex;align-items:end;gap:8px;padding:10px 2px}.col{flex:1;text-align:center}.colBar{background:linear-gradient(var(--cyan),#158f95);border-radius:7px 7px 3px 3px;min-height:4px}.colLabel{font:9px 'JetBrains Mono';color:var(--muted);margin-top:5px}
 .nav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(600px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:#061527f5;backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:8px 7px calc(8px + env(safe-area-inset-bottom))}.nav button{border:0;background:none;color:var(--muted);font-size:9px;padding:4px}.nav button b{display:block;font-size:18px;margin-bottom:2px}.nav button.active{color:var(--cyan)}.toast{position:fixed;z-index:20;left:50%;bottom:80px;transform:translateX(-50%);background:#0b2946;border:1px solid var(--cyan);border-radius:999px;padding:9px 13px;font-size:11px;box-shadow:0 10px 30px #0005;white-space:nowrap}
 @media(max-width:380px){.app{padding-left:12px;padding-right:12px}.task{gap:7px}.taskText{font-size:12px}.badge{font-size:9px}}
-
-<style>
-.modalBack{position:fixed;inset:0;background:#020b16c9;backdrop-filter:blur(8px);z-index:30;display:flex;align-items:flex-end;justify-content:center}
-.modal{width:min(600px,100%);max-height:92vh;overflow:auto;background:#09233d;border:1px solid var(--line);border-radius:22px 22px 0 0;padding:18px 16px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px #0007}
-.modalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.modalTitle{font:700 19px 'Space Grotesk'}.close{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;width:36px;height:36px}
-.pinGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:260px;margin:14px auto}.pinKey{height:48px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;font-size:18px}.pinDots{text-align:center;font-size:22px;letter-spacing:8px;color:var(--cyan);min-height:28px}
-.adminTabs{display:flex;gap:6px;overflow:auto;margin-bottom:13px}.adminTab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:8px 11px;font-size:11px}.adminTab.active{background:var(--cyan);color:#062338;border-color:var(--cyan);font-weight:700}
-.adminRow{display:flex;gap:9px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.adminIcon{width:39px;height:39px;border-radius:11px;background:var(--goldsoft);display:grid;place-items:center}.adminBody{flex:1}.adminName{font-size:12.5px;font-weight:600}.adminMeta{font:9.5px 'JetBrains Mono';color:var(--muted);margin-top:3px}.adminBtn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:9px;padding:7px 8px;font-size:10px}.adminBtn.danger{color:var(--danger);border-color:#e77a6944}
-.form{display:grid;gap:9px}.form input{width:100%;background:#ffffff08;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px}.form button{border:0;background:var(--gold);color:#182c43;border-radius:10px;padding:10px;font-weight:700}.notice{padding:10px 12px;border-radius:10px;background:#35d6d10b;border:1px solid #35d6d133;color:var(--muted);font-size:11px;line-height:1.45}.history{font-size:11px;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--line)}.empty{text-align:center;color:var(--muted);padding:25px 10px}
-</style>
-
+\n/* Mi Plano Diario 2.2 candidate controls */
+.modalBack{position:fixed;inset:0;background:#020b16d0;backdrop-filter:blur(9px);z-index:30;display:flex;align-items:flex-end;justify-content:center}.modal{width:min(600px,100%);max-height:93vh;overflow:auto;background:#09233d;border:1px solid var(--line);border-radius:22px 22px 0 0;padding:18px 16px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px #0008}.modalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modalTitle{font:700 19px 'Space Grotesk'}.close{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;width:36px;height:36px}.pinGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:270px;margin:14px auto}.pinKey{height:48px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;font-size:18px}.pinDots{text-align:center;font-size:22px;letter-spacing:8px;color:var(--cyan);min-height:28px}.adminTabs{display:flex;gap:6px;overflow:auto;margin-bottom:13px}.adminTab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:8px 11px;font-size:11px}.adminTab.active{background:var(--cyan);color:#062338;border-color:var(--cyan);font-weight:700}.form{display:grid;gap:9px}.form input{width:100%;background:#ffffff08;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px}.form button,.primary{border:0;background:var(--gold);color:#182c43;border-radius:10px;padding:10px;font-weight:700}.secondary{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:10px;padding:9px;font-size:11px}.adminRow{display:flex;gap:9px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.adminIcon{width:39px;height:39px;border-radius:11px;background:var(--goldsoft);display:grid;place-items:center}.adminBody{flex:1}.adminName{font-size:12.5px;font-weight:600}.adminMeta{font:9.5px 'JetBrains Mono';color:var(--muted);margin-top:3px}.adminActions{display:flex;gap:5px}.adminBtn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:9px;padding:7px 8px;font-size:10px}.adminBtn.danger{color:var(--danger);border-color:#e77a6944}.notice{padding:10px 12px;border-radius:10px;background:#35d6d10b;border:1px solid #35d6d133;color:var(--muted);font-size:11px;line-height:1.45}.history{font-size:11px;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--line)}.weekGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.dayCell{border:1px solid var(--line);border-radius:10px;padding:8px 3px;text-align:center;background:#ffffff04}.dayCell b{display:block;font:9px 'JetBrains Mono';color:var(--muted)}.dayCell span{display:block;font:700 14px 'Space Grotesk';margin-top:4px}.dayCell.today{box-shadow:inset 0 -2px 0 var(--gold)}.dayCell.done{border-color:#35d6d166;background:#35d6d111}.progressLine{height:8px;background:#ffffff0d;border-radius:9px;overflow:hidden;margin-top:7px}.progressLine>div{height:100%;background:linear-gradient(90deg,var(--cyan),#69d59c);border-radius:9px}.settingLine{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.settingLine b{font-size:12px}.settingLine span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.switch{width:44px;height:24px;border:0;border-radius:20px;background:#24465f;position:relative}.switch:after{content:'';position:absolute;width:18px;height:18px;top:3px;left:3px;background:#a9bbc9;border-radius:50%}.switch.on{background:var(--cyan)}.switch.on:after{left:23px;background:#062338}
 </style>
 </head>
 <body><div id="root"></div>
@@ -35,39 +26,222 @@ button,input{font:inherit}.top{display:flex;justify-content:space-between;align-
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-const {useEffect,useState}=React;
-const KEY="mi-plano-diario-v2"; const LEVEL_XP=150, DAILY_BONUS=15;
-const D=[["Tender la cama",5,"🛏️"],["Revisar agenda y tareas del colegio",10,"📚"],["Hacer tareas o estudiar",25,"✏️"],["Leer un rato (aunque no sea tarea)",15,"📖"],["Organizar ropa y útiles para el día siguiente",10,"👕"],["Recoger su espacio y llevar la ropa sucia a su lugar",10,"🧺"],["Actividad física (mínimo 60 minutos)",20,"🏃"],["Un momento en familia sin pantalla",10,"👨‍👩‍👦"]];
-const W=[["Barrer o aspirar su espacio",15],["Trapear",15],["Doblar y guardar ropa limpia",10],["Ayudar con los platos o la cocina",10],["Ayudar con las compras o guardar el mercado",10],["Limpiar su habitación a fondo",20]];
-const R=[["Elegir la película familiar","🎬",100,true],["30 min extra de videojuego","🎮",150,true],["Elegir la cena","🍕",200,true],["Plan especial con la familia","⭐",300,false]];
-const uid=()=>Math.random().toString(36).slice(2,10),today=()=>new Date().toISOString().slice(0,10);
-function fresh(){return{date:today(),daily:D.map(x=>({id:uid(),label:x[0],xp:x[1],icon:x[2]})),weekly:W.map(x=>({id:uid(),label:x[0],xp:x[1]})),checks:{},xp:0,streak:0,lastBonus:null,rewards:R.map(x=>({id:uid(),name:x[0],icon:x[1],cost:x[2],repeatable:x[3]})),history:[],parentPin:null}}
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||fresh()}catch{return fresh()}}
+const {useEffect,useMemo,useState}=React;
+
+const KEY="mi-plano-diario-v3";
+const LEVEL_XP=150, DAILY_BONUS=15, WEEK_BONUS=20;
+const DAYS=["L","M","X","J","V","S","D"];
+
+const DEFAULT_DAILY=[
+["Tender la cama",5,"🛏️"],["Revisar agenda y tareas del colegio",10,"📚"],["Hacer tareas o estudiar",25,"✏️"],
+["Leer un rato (aunque no sea tarea)",15,"📖"],["Organizar ropa y útiles para el día siguiente",10,"👕"],
+["Recoger su espacio y llevar la ropa sucia a su lugar",10,"🧺"],["Actividad física (mínimo 60 minutos)",20,"🏃"],
+["Un momento en familia sin pantalla",10,"👨‍👩‍👦"]];
+const DEFAULT_WEEKLY=[
+["Barrer o aspirar su espacio",15],["Trapear",15],["Doblar y guardar ropa limpia",10],
+["Ayudar con los platos o la cocina",10],["Ayudar con las compras o guardar el mercado",10],["Limpiar su habitación a fondo",20]];
+const DEFAULT_ACH=[
+["Aprender a lavar su propia ropa",30,"🧺"],["Cocinar una comida sencilla por sí mismo",30,"🍳"],
+["Manejar su propio dinero (mesada o ahorro)",25,"💰"],["Usar transporte público de forma segura",25,"🚌"],
+["Hacer una tarea pequeña de mantenimiento",20,"🔧"],["Pedir ayuda cuando algo no se entiende",15,"💡"]];
+const DEFAULT_REWARDS=[
+["Elegir la película familiar","🎬",100,true],["30 min extra de videojuego","🎮",150,true],
+["Elegir la cena","🍕",200,true],["Plan especial con la familia","⭐",300,false]];
+
+const uid=()=>Math.random().toString(36).slice(2,10);
+const dateKey=d=>{const x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`};
+const todayKey=()=>dateKey(new Date());
+const mondayKey=d=>{const x=new Date(d+"T12:00:00"),day=x.getDay(),diff=day===0?-6:1-day;x.setDate(x.getDate()+diff);return dateKey(x)};
+const addDays=(key,n)=>{const x=new Date(key+"T12:00:00");x.setDate(x.getDate()+n);return dateKey(x)};
+const fmt=d=>new Date(d+"T12:00:00").toLocaleDateString("es-CO",{weekday:"long",day:"numeric",month:"long"});
+const makeState=()=>({
+ version:3,date:todayKey(),weekStart:mondayKey(todayKey()),
+ daily:DEFAULT_DAILY.map(x=>({id:uid(),label:x[0],xp:x[1],icon:x[2]})),
+ weekly:DEFAULT_WEEKLY.map(x=>({id:uid(),label:x[0],xp:x[1]})),
+ achievements:DEFAULT_ACH.map(x=>({id:uid(),label:x[0],xp:x[1],icon:x[2]})),
+ rewards:DEFAULT_REWARDS.map(x=>({id:uid(),name:x[0],icon:x[1],cost:x[2],repeatable:x[3]})),
+ xp:0,streak:0,bestStreak:0,dailyChecks:{},weeklyChecks:{},achievementChecks:{},
+ dailyAwarded:{},weeklyAwarded:{},history:[],settings:{celebrations:true}
+});
+
+function migrate(raw){
+ if(!raw)return makeState();
+ const s=makeState();
+ // Preserve compatible 2.0 data while filling the new model.
+ s.date=raw.date||raw.todayDate||todayKey();
+ s.weekStart=raw.weekStart||mondayKey(todayKey());
+ s.daily=raw.daily||raw.dailyItems||s.daily;
+ s.weekly=raw.weekly||raw.weeklyItems||s.weekly;
+ s.achievements=raw.achievements||raw.ach||s.achievements;
+ s.rewards=raw.rewards||s.rewards;
+ s.xp=Number(raw.xp??raw.xpTotal??0);
+ s.streak=Number(raw.streak||0);
+ s.bestStreak=Number(raw.bestStreak||s.streak);
+ s.dailyChecks=raw.dailyChecks||raw.todayChecks||raw.checks||{};
+ s.weeklyChecks=raw.weeklyChecks||raw.weekChecks||{};
+ s.achievementChecks=raw.achievementChecks||raw.achDone||{};
+ s.dailyAwarded=raw.dailyAwarded||{};
+ s.weeklyAwarded=raw.weeklyAwarded||{};
+ s.history=raw.history||[];
+ s.settings={...s.settings,...(raw.settings||{})};
+ return s;
+}
+function load(){try{return migrate(JSON.parse(localStorage.getItem(KEY)))}catch{return makeState()}}
+
 function App(){
-const[s,setS]=useState(load),[tab,setTab]=useState("hoy"),[toast,setToast]=useState(""),[admin,setAdmin]=useState(false),[pin,setPin]=useState(""),[adminTab,setAdminTab]=useState("rewards"),[nr,setNr]=useState({name:"",icon:"🎁",cost:100,repeatable:true});
-useEffect(()=>localStorage.setItem(KEY,JSON.stringify(s)),[s]); const notify=x=>{setToast(x);setTimeout(()=>setToast(""),1600)};
-const level=Math.floor(s.xp/LEVEL_XP)+1,into=s.xp%LEVEL_XP,pct=Math.round(into/LEVEL_XP*100),done=s.daily.filter(x=>s.checks[x.id]).length;
-function toggle(id){if(s.checks[id])return;const x=s.daily.find(i=>i.id===id),checks={...s.checks,[id]:true};let xp=s.xp+x.xp,streak=s.streak,last=s.lastBonus;if(s.daily.every(i=>checks[i.id])&&last!==s.date){xp+=DAILY_BONUS;streak++;last=s.date;notify("🔥 Rutina completa · +"+DAILY_BONUS+" XP")}else notify("+"+x.xp+" XP");setS({...s,checks,xp,streak,lastBonus:last})}
-function add(){const e=document.getElementById("newTask");if(!e?.value.trim())return;setS({...s,daily:[...s.daily,{id:uid(),label:e.value.trim(),xp:10,icon:"✓"}]});e.value="";notify("Actividad agregada")}
-function claim(r){const used=s.history.filter(h=>h.rewardId===r.id).length;if(s.xp<r.cost||(!r.repeatable&&used))return;setS({...s,xp:s.xp-r.cost,history:[...s.history,{rewardId:r.id,name:r.name,cost:r.cost,date:new Date().toLocaleString("es-CO")}]});notify("🎁 "+r.name)}
-function unlock(){if(!s.parentPin){if(pin.length===4){setS({...s,parentPin:pin});setPin("");setAdmin("open");notify("🔐 PIN creado")}return}if(pin===s.parentPin){setPin("");setAdmin("open")}else{setPin("");notify("PIN incorrecto")}}
-function saveReward(){if(!nr.name.trim()||Number(nr.cost)<=0)return;setS({...s,rewards:[...s.rewards,{id:uid(),name:nr.name.trim(),icon:nr.icon||"🎁",cost:Number(nr.cost),repeatable:nr.repeatable}]});setNr({name:"",icon:"🎁",cost:100,repeatable:true});notify("🎁 Recompensa creada")}
-function delReward(id){setS({...s,rewards:s.rewards.filter(r=>r.id!==id)});notify("Recompensa eliminada")}
-return <div className="app">
-<header className="top"><div className="brand"><div className="logo"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="33" fill="none" stroke="#35d6d1" strokeWidth="8"/><path d="M30 51l13 13 28-31" fill="none" stroke="#35d6d1" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/><path d="M74 18l7 3 7 3-7 3-3 7-3-7-7-3 7-3 3-7z" fill="#f5ba45"/></svg></div><div><div className="title">Mi Plano Diario</div><div className="subtitle">Tu rutina. Tu progreso.</div></div></div><button className="round" onClick={()=>{setPin("");setAdmin(true)}}>⚙</button></header>
-<section className="hero"><div className="heroRow"><div className="level"><small>NIVEL</small><b>{level}</b></div><div className="grow"><div className="bar"><div className="fill" style={{width:pct+"%"}}/></div><div className="xp">{into} / {LEVEL_XP} XP · {LEVEL_XP-into} para nivel {level+1}</div></div><div className="streak"><div className="fire">🔥</div><b>{s.streak}</b><small>racha</small></div></div><div className="metrics"><div className="metric"><b>{s.xp}</b><span>XP disponible</span></div><div className="metric"><b>{done}/{s.daily.length}</b><span>hoy</span></div><div className="metric"><b>{s.history.length}</b><span>canjes</span></div></div></section>
-{tab==="hoy"&&<><div className="section"><div className="sectionHead"><div><div className="sectionTitle">Hoy</div><div className="sectionSub">{new Date().toLocaleDateString("es-CO",{weekday:"long",day:"numeric",month:"long"})}</div></div></div>{s.daily.map(x=><div className="task" key={x.id}><div className={"check "+(s.checks[x.id]?"done":"")} onClick={()=>toggle(x.id)}></div><div className={"taskText "+(s.checks[x.id]?"done":"")} onClick={()=>toggle(x.id)}>{x.icon} {x.label}</div><div className="badge">+{x.xp} XP</div></div>)}<div className="add"><input id="newTask" placeholder="Agregar actividad..."/><button onClick={add}>+</button></div><div className="info"><b>El descanso también cuenta.</b><br/>El sueño y el tiempo libre no se puntúan.</div></div></>}
-{tab==="semana"&&<div className="section"><div className="sectionHead"><div><div className="sectionTitle">Esta semana</div><div className="sectionSub">Constancia, no perfección</div></div></div>{s.weekly.map(x=><div className="task" key={x.id}><div className="check"></div><div className="taskText">{x.label}</div><div className="badge">+{x.xp} XP</div></div>)}</div>}
-{tab==="recompensas"&&<div className="section"><div className="sectionHead"><div><div className="sectionTitle">🎁 Recompensas</div><div className="sectionSub">Canjea tu esfuerzo</div></div></div><div className="card"><div className="cardTitle">Tu saldo</div><div style={{font:"700 30px 'Space Grotesk'",color:"var(--gold)"}}>{s.xp} XP</div></div>{s.rewards.map(r=>{const used=s.history.filter(h=>h.rewardId===r.id).length,locked=!r.repeatable&&used>0;return <div className="card reward" key={r.id}><div className="rewardIcon">{r.icon}</div><div className="rewardBody"><div className="rewardName">{r.name}</div><div className="rewardCost">{r.cost} XP · {r.repeatable?"repetible":"una vez"}</div></div><button className="claim" disabled={s.xp<r.cost||locked} onClick={()=>claim(r)}>{locked?"Canjeada":"Canjear"}</button></div>})}</div>}
-{tab==="stats"&&<div className="section"><div className="sectionHead"><div><div className="sectionTitle">📊 Progreso</div><div className="sectionSub">Tu evolución</div></div></div><div className="card"><div className="cardTitle">Actividad semanal</div><div className="muted">Las estadísticas reales vendrán en el siguiente bloque.</div></div></div>}
-<nav className="nav">{[["hoy","⌂","Hoy"],["semana","▦","Semana"],["recompensas","🎁","Premios"],["stats","▥","Progreso"]].map(([k,i,l])=><button key={k} className={tab===k?"active":""} onClick={()=>setTab(k)}><b>{i}</b>{l}</button>)}</nav>
-{admin===true&&<div className="modalBack"><div className="modal"><div className="modalHead"><div className="modalTitle">⚙️ Control Parental</div><button className="close" onClick={()=>setAdmin(false)}>×</button></div><div className="notice">{s.parentPin?"Introduce tu PIN de 4 dígitos.":"Crea un PIN de 4 dígitos para proteger esta sección."}</div><div className="pinDots">{pin.replace(/./g,"•")}</div><div className="pinGrid">{["1","2","3","4","5","6","7","8","9","⌫","0","✓"].map(k=><button className="pinKey" onClick={()=>k==="⌫"?setPin(pin.slice(0,-1)):k==="✓"?unlock():pin.length<4&&setPin(pin+k)}>{k}</button>)}</div></div></div>}
-{admin==="open"&&<div className="modalBack"><div className="modal"><div className="modalHead"><div className="modalTitle">⚙️ Control Parental</div><button className="close" onClick={()=>setAdmin(false)}>×</button></div><div className="adminTabs">{[["rewards","🎁 Recompensas"],["history","📜 Historial"],["security","🔐 Seguridad"]].map(([k,l])=><button className={"adminTab "+(adminTab===k?"active":"")} onClick={()=>setAdminTab(k)}>{l}</button>)}</div>
-{adminTab==="rewards"&&<><div className="card"><div className="cardTitle">Crear recompensa</div><div className="form"><input placeholder="Nombre" value={nr.name} onChange={e=>setNr({...nr,name:e.target.value})}/><input placeholder="Emoji" value={nr.icon} onChange={e=>setNr({...nr,icon:e.target.value})}/><input type="number" min="1" placeholder="Costo en XP" value={nr.cost} onChange={e=>setNr({...nr,cost:e.target.value})}/><label style={{fontSize:"11px",color:"var(--muted)"}}><input type="checkbox" checked={nr.repeatable} onChange={e=>setNr({...nr,repeatable:e.target.checked})}/> Repetible</label><button onClick={saveReward}>＋ Crear recompensa</button></div></div>{s.rewards.map(r=><div className="adminRow" key={r.id}><div className="adminIcon">{r.icon}</div><div className="adminBody"><div className="adminName">{r.name}</div><div className="adminMeta">{r.cost} XP · {r.repeatable?"repetible":"una vez"}</div></div><button className="adminBtn danger" onClick={()=>delReward(r.id)}>Eliminar</button></div>)}</>}
-{adminTab==="history"&&(s.history.length?s.history.slice().reverse().map(h=><div className="history">🎁 {h.name} · {h.cost} XP<br/>{h.date}</div>):<div className="empty">Todavía no hay canjes.</div>)}
-{adminTab==="security"&&<div className="card"><div className="cardTitle">Seguridad</div><div className="muted">El PIN protege las reglas y recompensas en este dispositivo.</div></div>}
-</div></div>}
-{toast&&<div className="toast">{toast}</div>}</div>}
+ const [s,setS]=useState(load),[tab,setTab]=useState("hoy"),[toast,setToast]=useState("");
+ const [admin,setAdmin]=useState(false),[pin,setPin]=useState(""),[adminOpen,setAdminOpen]=useState(false),[adminTab,setAdminTab]=useState("rewards");
+ const [rewardForm,setRewardForm]=useState({id:null,name:"",icon:"🎁",cost:100,repeatable:true});
+ const [activityForm,setActivityForm]=useState({id:null,label:"",xp:10,kind:"daily"});
+ const [achForm,setAchForm]=useState({id:null,label:"",icon:"🏆",xp:20});
+
+ useEffect(()=>localStorage.setItem(KEY,JSON.stringify(s)),[s]);
+ const notify=t=>{setToast(t);setTimeout(()=>setToast(""),1700)};
+
+ // Automatically roll the day/week forward without deleting the historical record.
+ useEffect(()=>{
+   const now=todayKey();
+   if(s.date!==now){
+     const yesterday=addDays(now,-1);
+     const completedYesterday=s.daily.length>0 && s.daily.every(x=>s.dailyChecks[x.id]);
+     const nextStreak=(s.date===yesterday&&completedYesterday)?s.streak:s.streak>0&&s.date===yesterday?s.streak:0;
+     setS({...s,date:now,dailyChecks:{},dailyAwarded:{},streak:nextStreak});
+   }
+   const wk=mondayKey(now);
+   if(s.weekStart!==wk)setS(prev=>({...prev,weekStart:wk,weeklyChecks:{},weeklyAwarded:{}}));
+ },[]);
+
+ const level=Math.floor(s.xp/LEVEL_XP)+1,into=s.xp%LEVEL_XP,pct=Math.round(into/LEVEL_XP*100);
+ const doneToday=s.daily.filter(x=>s.dailyChecks[x.id]).length;
+ const doneWeek=s.weekly.filter(x=>s.weeklyChecks[x.id]).length;
+ const achDone=s.achievements.filter(x=>s.achievementChecks[x.id]).length;
+ const weekXp=s.weekly.reduce((a,x)=>a+(s.weeklyChecks[x.id]?x.xp:0),0);
+ const dailyXp=s.daily.reduce((a,x)=>a+(s.dailyChecks[x.id]?x.xp:0),0);
+ const weekDays=Array.from({length:7},(_,i)=>addDays(s.weekStart,i));
+ const historyWeek=s.history.filter(h=>h.dateKey>=s.weekStart);
+
+ function toggleDaily(id){
+   if(s.dailyChecks[id])return;
+   const item=s.daily.find(x=>x.id===id),checks={...s.dailyChecks,[id]:true};
+   let xp=s.xp+item.xp, streak=s.streak, best=s.bestStreak, awarded={...s.dailyAwarded};
+   if(s.daily.length&&s.daily.every(x=>checks[x.id])&&!awarded[s.date]){
+     xp+=DAILY_BONUS;streak+=1;best=Math.max(best,streak);awarded[s.date]=true;
+     notify("🔥 Rutina completa · +"+(item.xp+DAILY_BONUS)+" XP");
+   }else notify("+"+item.xp+" XP");
+   setS({...s,dailyChecks:checks,dailyAwarded:awarded,xp,streak,bestStreak:best});
+ }
+ function toggleWeekly(id){
+   if(s.weeklyChecks[id])return;
+   const item=s.weekly.find(x=>x.id===id),checks={...s.weeklyChecks,[id]:true};
+   let xp=s.xp+item.xp,awarded={...s.weeklyAwarded};
+   if(s.weekly.length&&s.weekly.every(x=>checks[x.id])&&!awarded[s.weekStart]){
+     xp+=WEEK_BONUS;awarded[s.weekStart]=true;notify("🏁 Semana completa · +"+(item.xp+WEEK_BONUS)+" XP");
+   }else notify("+"+item.xp+" XP");
+   setS({...s,weeklyChecks:checks,weeklyAwarded:awarded,xp});
+ }
+ function toggleAchievement(id){
+   const on=!!s.achievementChecks[id], item=s.achievements.find(x=>x.id===id);
+   const checks={...s.achievementChecks,[id]:!on};
+   setS({...s,achievementChecks:checks,xp:s.xp+(on?-item.xp:item.xp)});
+   notify(on?"-"+item.xp+" XP":"🏆 +"+item.xp+" XP");
+ }
+ function addDaily(){
+   if(!activityForm.label.trim())return;
+   const item={id:uid(),label:activityForm.label.trim(),xp:Number(activityForm.xp)||10,icon:"✓"};
+   setS({...s,daily:[...s.daily,item]});setActivityForm({...activityForm,label:""});notify("Actividad creada");
+ }
+ function saveActivity(){
+   if(!activityForm.label.trim())return;
+   const list=activityForm.kind==="daily"?s.daily:s.weekly;
+   const item={id:activityForm.id||uid(),label:activityForm.label.trim(),xp:Number(activityForm.xp)||10,...(activityForm.kind==="daily"?{icon:"✓"}:{})};
+   const next=list.some(x=>x.id===activityForm.id)?list.map(x=>x.id===activityForm.id?item:x):[...list,item];
+   setS({...s,[activityForm.kind==="daily"?"daily":"weekly"]:next});
+   setActivityForm({id:null,label:"",xp:10,kind:activityForm.kind});notify("Guardado");
+ }
+ function deleteActivity(kind,id){
+   const key=kind==="daily"?"daily":"weekly";
+   setS({...s,[key]:s[key].filter(x=>x.id!==id)});notify("Eliminado");
+ }
+ function saveAchievement(){
+   if(!achForm.label.trim())return;
+   const item={id:achForm.id||uid(),label:achForm.label.trim(),icon:achForm.icon||"🏆",xp:Number(achForm.xp)||20};
+   const list=s.achievements.some(x=>x.id===item.id)?s.achievements.map(x=>x.id===item.id?item:x):[...s.achievements,item];
+   setS({...s,achievements:list});setAchForm({id:null,label:"",icon:"🏆",xp:20});notify("Logro guardado");
+ }
+ function deleteAchievement(id){setS({...s,achievements:s.achievements.filter(x=>x.id!==id)});notify("Logro eliminado")}
+ function saveReward(){
+   if(!rewardForm.name.trim()||Number(rewardForm.cost)<=0)return;
+   const item={id:rewardForm.id||uid(),name:rewardForm.name.trim(),icon:rewardForm.icon||"🎁",cost:Number(rewardForm.cost),repeatable:!!rewardForm.repeatable};
+   const list=s.rewards.some(x=>x.id===item.id)?s.rewards.map(x=>x.id===item.id?item:x):[...s.rewards,item];
+   setS({...s,rewards:list});setRewardForm({id:null,name:"",icon:"🎁",cost:100,repeatable:true});notify("🎁 Recompensa guardada");
+ }
+ function deleteReward(id){setS({...s,rewards:s.rewards.filter(x=>x.id!==id)});notify("Recompensa eliminada")}
+ function claimReward(r){
+   const used=s.history.filter(h=>h.rewardId===r.id).length;
+   if(s.xp<r.cost||(!r.repeatable&&used))return;
+   const h={id:uid(),rewardId:r.id,name:r.name,cost:r.cost,dateKey:todayKey(),dateLabel:new Date().toLocaleString("es-CO")};
+   setS({...s,xp:s.xp-r.cost,history:[...s.history,h]});notify("🎁 "+r.name+" canjeada");
+ }
+ function unlock(){
+   if(pin.length!==4)return;
+   if(!s.parentPin){setS({...s,parentPin:pin});setPin("");setAdminOpen(true);notify("🔐 PIN parental creado");return}
+   if(pin===s.parentPin){setPin("");setAdminOpen(true)}else{setPin("");notify("PIN incorrecto")}
+ }
+ const weeklyPercent=s.weekly.length?Math.round(doneWeek/s.weekly.length*100):0;
+ const dailyPercent=s.daily.length?Math.round(doneToday/s.daily.length*100):0;
+
+ return <div className="app">
+   <header className="top">
+    <div className="brand"><div className="logo"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="33" fill="none" stroke="#35d6d1" strokeWidth="8"/><path d="M30 51l13 13 28-31" fill="none" stroke="#35d6d1" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/><path d="M74 18l7 3 7 3-7 3-3 7-3-7-7-3 7-3 3-7z" fill="#f5ba45"/></svg></div><div><div className="title">Mi Plano Diario</div><div className="subtitle">Tu rutina. Tu progreso.</div></div></div>
+    <button className="round" onClick={()=>{setPin("");setAdmin(true)}}>⚙</button>
+   </header>
+
+   <section className="hero"><div className="heroRow"><div className="level"><small>NIVEL</small><b>{level}</b></div><div className="grow"><div className="bar"><div className="fill" style={{width:pct+"%"}}/></div><div className="xp">{into} / {LEVEL_XP} XP · {LEVEL_XP-into} para nivel {level+1}</div></div><div className="streak"><div className="fire">🔥</div><b>{s.streak}</b><small>racha</small></div></div><div className="metrics"><div className="metric"><b>{s.xp}</b><span>XP disponible</span></div><div className="metric"><b>{doneToday}/{s.daily.length}</b><span>hoy</span></div><div className="metric"><b>{s.history.length}</b><span>canjes</span></div></div></section>
+
+   {tab==="hoy"&&<div className="section"><div className="sectionHead"><div><div className="sectionTitle">Hoy</div><div className="sectionSub">{fmt(s.date)}</div></div><div className="day">{dailyPercent}%</div></div>
+    {s.daily.map(x=><div className="task" key={x.id}><div className={"check "+(s.dailyChecks[x.id]?"done":"")} onClick={()=>toggleDaily(x.id)}></div><div className={"taskText "+(s.dailyChecks[x.id]?"done":"")} onClick={()=>toggleDaily(x.id)}>{x.icon} {x.label}</div><div className="badge">+{x.xp} XP</div></div>)}
+    <div className="add"><input id="newTask" placeholder="Agregar actividad..." onKeyDown={e=>e.key==="Enter"&&addDaily()}/><button onClick={addDaily}>+</button></div>
+    <div className="info"><b>El descanso también cuenta.</b><br/>El sueño y el tiempo libre no se puntúan. La meta es aprender a equilibrar responsabilidad, descanso, familia y diversión.</div>
+   </div>}
+
+   {tab==="semana"&&<div className="section"><div className="sectionHead"><div><div className="sectionTitle">Esta semana</div><div className="sectionSub">{doneWeek}/{s.weekly.length} tareas · {weekXp} XP</div></div><div className="day">{weeklyPercent}%</div></div>
+    <div className="card"><div className="cardTitle">Ritmo semanal</div><div className="weekGrid">{weekDays.map((d,i)=>{const done=i===0?doneToday>0:false;return <div className={"dayCell "+(d===s.date?"today ":"")+(done?"done":"")} key={d}><b>{DAYS[i]}</b><span>{new Date(d+"T12:00:00").getDate()}</span></div>})}</div><div className="progressLine"><div style={{width:weeklyPercent+"%"}}/></div><div className="muted" style={{marginTop:8}}>{weeklyPercent===100?"🏁 Semana completa · bono aplicado":"Completa todas las tareas semanales para ganar +"+WEEK_BONUS+" XP extra."}</div></div>
+    {s.weekly.map(x=><div className="task" key={x.id}><div className={"check "+(s.weeklyChecks[x.id]?"done":"")} onClick={()=>toggleWeekly(x.id)}></div><div className={"taskText "+(s.weeklyChecks[x.id]?"done":"")} onClick={()=>toggleWeekly(x.id)}>{x.label}</div><div className="badge">+{x.xp} XP</div></div>)}
+   </div>}
+
+   {tab==="recompensas"&&<div className="section"><div className="sectionHead"><div><div className="sectionTitle">🎁 Recompensas</div><div className="sectionSub">Canjea tu esfuerzo</div></div></div>
+    <div className="card"><div className="cardTitle">Tu saldo</div><div style={{font:"700 30px 'Space Grotesk'",color:"var(--gold)"}}>{s.xp} XP</div><div className="muted">Ganas XP haciendo actividades y lo gastas aquí. No hay penalizaciones por descansar.</div></div>
+    {s.rewards.map(r=>{const used=s.history.filter(h=>h.rewardId===r.id).length,locked=!r.repeatable&&used>0;return <div className="card reward" key={r.id}><div className="rewardIcon">{r.icon}</div><div className="rewardBody"><div className="rewardName">{r.name}</div><div className="rewardCost">{r.cost} XP · {r.repeatable?"repetible":"una vez"}</div></div><button className="claim" disabled={s.xp<r.cost||locked} onClick={()=>claimReward(r)}>{locked?"Canjeada":s.xp>=r.cost?"Canjear":"Faltan "+(r.cost-s.xp)+" XP"}</button></div>})}
+    {s.history.length>0&&<div className="card"><div className="cardTitle">Último canje</div><div className="muted">🎁 {s.history[s.history.length-1].name} · {s.history[s.history.length-1].dateLabel}</div></div>}
+   </div>}
+
+   {tab==="stats"&&<div className="section"><div className="sectionHead"><div><div className="sectionTitle">📊 Progreso</div><div className="sectionSub">Datos de tu actividad</div></div></div>
+    <div className="card"><div className="cardTitle">Resumen</div><div className="metrics"><div className="metric"><b>{s.xp}</b><span>XP disponible</span></div><div className="metric"><b>{s.streak}</b><span>racha actual</span></div><div className="metric"><b>{s.bestStreak}</b><span>mejor racha</span></div></div></div>
+    <div className="card"><div className="cardTitle">Semana actual</div><div className="muted">Actividades diarias completadas: {doneToday}/{s.daily.length}</div><div className="progressLine"><div style={{width:dailyPercent+"%"}}/></div><div className="muted" style={{marginTop:10}}>Tareas semanales completadas: {doneWeek}/{s.weekly.length}</div><div className="progressLine"><div style={{width:weeklyPercent+"%"}}/></div></div>
+    <div className="card"><div className="cardTitle">Logros</div><div className="muted">{achDone} de {s.achievements.length} habilidades/logros conseguidos.</div></div>
+   </div>}
+
+   <nav className="nav">{[["hoy","⌂","Hoy"],["semana","▦","Semana"],["recompensas","🎁","Premios"],["stats","▥","Progreso"]].map(([k,i,l])=><button key={k} className={tab===k?"active":""} onClick={()=>setTab(k)}><b>{i}</b>{l}</button>)}</nav>
+
+   {admin===true&&!adminOpen&&<div className="modalBack"><div className="modal"><div className="modalHead"><div className="modalTitle">⚙️ Control Parental</div><button className="close" onClick={()=>setAdmin(false)}>×</button></div><div className="notice">{s.parentPin?"Introduce tu PIN de 4 dígitos.":"Crea un PIN de 4 dígitos para proteger la configuración."}</div><div className="pinDots">{pin.replace(/./g,"•")}</div><div className="pinGrid">{["1","2","3","4","5","6","7","8","9","⌫","0","✓"].map(k=><button className="pinKey" key={k} onClick={()=>k==="⌫"?setPin(pin.slice(0,-1)):k==="✓"?unlock():pin.length<4&&setPin(pin+k)}>{k}</button>)}</div></div></div>}
+
+   {adminOpen&&<div className="modalBack"><div className="modal"><div className="modalHead"><div className="modalTitle">⚙️ Control Parental</div><button className="close" onClick={()=>{setAdminOpen(false);setAdmin(false)}}>×</button></div>
+    <div className="adminTabs">{[["rewards","🎁 Recompensas"],["activities","📋 Rutinas"],["ach","🏆 Logros"],["history","📜 Historial"],["security","🔐 Seguridad"]].map(([k,l])=><button key={k} className={"adminTab "+(adminTab===k?"active":"")} onClick={()=>setAdminTab(k)}>{l}</button>)}</div>
+
+    {adminTab==="rewards"&&<><div className="card"><div className="cardTitle">{rewardForm.id?"Editar recompensa":"Crear recompensa"}</div><div className="form"><input placeholder="Nombre" value={rewardForm.name} onChange={e=>setRewardForm({...rewardForm,name:e.target.value})}/><input placeholder="Emoji" value={rewardForm.icon} onChange={e=>setRewardForm({...rewardForm,icon:e.target.value})}/><input type="number" min="1" placeholder="Costo en XP" value={rewardForm.cost} onChange={e=>setRewardForm({...rewardForm,cost:e.target.value})}/><label style={{fontSize:11,color:"var(--muted)"}}><input type="checkbox" checked={rewardForm.repeatable} onChange={e=>setRewardForm({...rewardForm,repeatable:e.target.checked})}/> Repetible</label><div style={{display:"flex",gap:7}}><button className="primary" onClick={saveReward}>{rewardForm.id?"Guardar cambios":"＋ Crear recompensa"}</button>{rewardForm.id&&<button className="secondary" onClick={()=>setRewardForm({id:null,name:"",icon:"🎁",cost:100,repeatable:true})}>Cancelar</button>}</div></div></div>
+    {s.rewards.map(r=><div className="adminRow" key={r.id}><div className="adminIcon">{r.icon}</div><div className="adminBody"><div className="adminName">{r.name}</div><div className="adminMeta">{r.cost} XP · {r.repeatable?"repetible":"una vez"}</div></div><div className="adminActions"><button className="adminBtn" onClick={()=>setRewardForm(r)}>Editar</button><button className="adminBtn danger" onClick={()=>deleteReward(r.id)}>Eliminar</button></div></div>)}</>}
+
+    {adminTab==="activities"&&<><div className="adminTabs"><button className={"adminTab "+(activityForm.kind==="daily"?"active":"")} onClick={()=>setActivityForm({...activityForm,kind:"daily"})}>Diarias</button><button className={"adminTab "+(activityForm.kind==="weekly"?"active":"")} onClick={()=>setActivityForm({...activityForm,kind:"weekly"})}>Semanales</button></div><div className="card"><div className="cardTitle">{activityForm.id?"Editar actividad":"Agregar actividad"}</div><div className="form"><input placeholder="Actividad" value={activityForm.label} onChange={e=>setActivityForm({...activityForm,label:e.target.value})}/><input type="number" min="1" placeholder="XP" value={activityForm.xp} onChange={e=>setActivityForm({...activityForm,xp:e.target.value})}/><div style={{display:"flex",gap:7}}><button onClick={saveActivity}>{activityForm.id?"Guardar":"＋ Agregar"}</button>{activityForm.id&&<button className="secondary" onClick={()=>setActivityForm({...activityForm,id:null,label:"",xp:10})}>Cancelar</button>}</div></div></div>{(activityForm.kind==="daily"?s.daily:s.weekly).map(x=><div className="adminRow" key={x.id}><div className="adminIcon">{x.icon||"✓"}</div><div className="adminBody"><div className="adminName">{x.label}</div><div className="adminMeta">+{x.xp} XP</div></div><div className="adminActions"><button className="adminBtn" onClick={()=>setActivityForm({id:x.id,label:x.label,xp:x.xp,kind:activityForm.kind})}>Editar</button><button className="adminBtn danger" onClick={()=>deleteActivity(activityForm.kind,x.id)}>Eliminar</button></div></div>)}</>}
+
+    {adminTab==="ach"&&<><div className="card"><div className="cardTitle">{achForm.id?"Editar logro":"Crear logro"}</div><div className="form"><input placeholder="Nombre del logro" value={achForm.label} onChange={e=>setAchForm({...achForm,label:e.target.value})}/><input placeholder="Emoji" value={achForm.icon} onChange={e=>setAchForm({...achForm,icon:e.target.value})}/><input type="number" min="1" placeholder="XP" value={achForm.xp} onChange={e=>setAchForm({...achForm,xp:e.target.value})}/><button onClick={saveAchievement}>{achForm.id?"Guardar cambios":"＋ Crear logro"}</button></div></div>{s.achievements.map(x=><div className="adminRow" key={x.id}><div className="adminIcon">{x.icon}</div><div className="adminBody"><div className="adminName">{x.label}</div><div className="adminMeta">+{x.xp} XP</div></div><div className="adminActions"><button className="adminBtn" onClick={()=>setAchForm(x)}>Editar</button><button className="adminBtn danger" onClick={()=>deleteAchievement(x.id)}>Eliminar</button></div></div>)}</>}
+
+    {adminTab==="history"&&(s.history.length?s.history.slice().reverse().map(h=><div className="history" key={h.id}>🎁 {h.name} · {h.cost} XP<br/>{h.dateLabel}</div>):<div className="empty">Todavía no hay canjes.</div>)}
+
+    {adminTab==="security"&&<><div className="card"><div className="cardTitle">Seguridad</div><div className="settingLine"><div><b>Celebraciones</b><span>Mensajes al completar actividades</span></div><button className={"switch "+(s.settings.celebrations?"on":"")} onClick={()=>setS({...s,settings:{...s.settings,celebrations:!s.settings.celebrations}})}></button></div><div className="notice" style={{marginTop:12}}>El PIN protege este panel en este dispositivo. No se envía a ningún servidor.</div></div></>}
+   </div></div>}
+   {toast&&<div className="toast">{toast}</div>}
+ </div>
+}
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
 </body></html>
