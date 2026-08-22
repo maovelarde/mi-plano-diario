@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#123055">
+<title>Mi Plano Diario</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root{--bg:#123055;--grid:rgba(255,255,255,.05);--panel:#17406B;--border:rgba(255,255,255,.14);--ink:#EAF2FA;--muted:#9DB6CE;--amber:#F2B84B;--amberSoft:rgba(242,184,75,.16);--cyan:#6FD3E0;--cyanSoft:rgba(111,211,224,.12);--danger:#E2725B;--success:#7BC98A}
+*{box-sizing:border-box}body{margin:0;background:#0c223b;color:var(--ink);font-family:'Work Sans',system-ui,sans-serif}
+button,input{font:inherit}.app{min-height:100vh;max-width:600px;margin:auto;padding:22px 18px 42px;background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px}
+.header{margin-bottom:18px}.app-title{font-family:'Space Grotesk';font-size:25px;font-weight:700}.app-sub{font-family:'JetBrains Mono';font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+.status{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:15px;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.level{width:76px;height:76px;flex:0 0 76px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(145deg,var(--amber),#c98f2e);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#1b2a44}.level small{font:600 8px 'JetBrains Mono'}.level strong{font:700 27px 'Space Grotesk';line-height:1}
+.mid{flex:1;min-width:0}.bar{height:9px;background:rgba(255,255,255,.1);border-radius:5px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--cyan));transition:width .35s}.xptext{font:11px 'JetBrains Mono';color:var(--muted);margin-top:6px}
+.streak{text-align:center;min-width:44px}.fire{font-size:22px}.streak strong{display:block;font:700 20px 'Space Grotesk';line-height:1}.streak small{font:10px 'JetBrains Mono';color:var(--muted)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:12px}.tab{background:none;border:0;color:var(--muted);padding:9px 5px;margin-right:12px;border-bottom:2px solid transparent;font-weight:600;font-size:12px;text-transform:uppercase;cursor:pointer}.tab.active{color:var(--ink);border-bottom-color:var(--amber)}
+.banner{padding:10px 13px;border-radius:8px;margin-bottom:12px;background:var(--amberSoft);border:1px solid var(--amber);color:var(--amber);font-size:12px;font-weight:600}.banner.cyan{background:var(--cyanSoft);border-color:var(--cyan);color:var(--cyan)}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:15px;margin-bottom:13px}.title{font:600 14px 'Space Grotesk';color:var(--cyan);text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+.row{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px dashed var(--border)}.check{width:21px;height:21px;border:1.5px solid var(--cyan);border-radius:5px;flex:0 0 21px;cursor:pointer;background:rgba(255,255,255,.03);display:grid;place-items:center}.check.done{background:var(--amber);border-color:var(--amber)}.check.done:after{content:'✓';color:#1b2a44;font-weight:800;font-size:13px}.label{flex:1;font-size:13.5px;cursor:pointer}.label.done{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--amber)}.badge{font:10.5px 'JetBrains Mono';color:var(--amber);background:var(--amberSoft);padding:4px 7px;border-radius:999px;white-space:nowrap}.remove{border:0;background:none;color:var(--danger);cursor:pointer;opacity:.65;padding:4px}.remove:hover{opacity:1}
+.add{display:flex;gap:6px;margin-top:10px}.add input{flex:1;min-width:0;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:7px;color:var(--ink);padding:9px 10px;font-size:12.5px}.add button{width:38px;border:0;border-radius:7px;background:var(--amber);color:#1b2a44;font-size:20px;cursor:pointer}
+.info{background:var(--cyanSoft);border:1px solid rgba(111,211,224,.35);color:var(--muted);font-size:12px;line-height:1.55;padding:12px 14px;border-radius:9px;margin-bottom:14px}.info strong{color:var(--cyan)}
+.date{font:10.5px 'JetBrains Mono';color:var(--muted);border-top:1px solid var(--border);padding-top:10px;text-transform:uppercase;letter-spacing:.04em}.footer{margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}.reset{border:0;background:none;color:var(--muted);font-size:11.5px;cursor:pointer}.reset:hover{color:var(--danger)}.confirm{font-size:11.5px;color:var(--danger);display:flex;gap:7px;align-items:center;flex-wrap:wrap}.confirm button{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:6px 9px;font-size:11px}.confirm .yes{color:var(--danger);border-color:var(--danger)}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#0d2745;border:1px solid var(--cyan);color:var(--ink);padding:9px 13px;border-radius:999px;font-size:12px;box-shadow:0 8px 30px rgba(0,0,0,.3);z-index:5}
+@media(max-width:420px){.status{flex-wrap:wrap}.mid{min-width:145px}.streak{margin-left:auto}.badge{font-size:10px}.remove{opacity:.8}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script>
+const {useState,useEffect}=React;
+const KEY='mi-plano-diario-v3';
+const LEVEL_XP=150, DAILY_BONUS=15, WEEK_BONUS=20;
+const daily=[
+['Tender la cama',5],['Revisar agenda y tareas del colegio',10],['Hacer tareas o estudiar',25],
+['Leer un rato (aunque no sea tarea)',15],['Organizar ropa y útiles para el día siguiente',10],
+['Recoger su espacio y llevar la ropa sucia a su lugar',10],['Actividad física (mínimo 60 minutos)',20],
+['Un momento en familia sin pantalla',10]];
+const weekly=[['Barrer o aspirar su espacio',15],['Trapear',15],['Doblar y guardar ropa limpia',10],
+['Ayudar con los platos o la cocina',10],['Ayudar con las compras o guardar el mercado',10],['Limpiar su habitación a fondo',20]];
+const achievements=[['Aprender a lavar su propia ropa',30],['Cocinar una comida sencilla por sí mismo',30],
+['Manejar su propio dinero (mesada o ahorro)',25],['Usar transporte público de forma segura',25],
+['Hacer una tarea pequeña de mantenimiento (cambiar un bombillo, etc.)',20],
+['Pedir ayuda cuando algo no se entiende, en vez de rendirse',15]];
+const id=()=>Math.random().toString(36).slice(2,10);
+const today=()=>{const d=new Date();return d.toISOString().slice(0,10)};
+const monday=s=>{const d=new Date(s+'T00:00:00'),day=d.getDay();d.setDate(d.getDate()+(day===0?-6:1-day));return d.toISOString().slice(0,10)};
+const longDate=s=>new Date(s+'T00:00:00').toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
+const makeItems=a=>a.map(([label,xp])=>({id:id(),label,xp}));
+function fresh(){const t=today();return {daily:makeItems(daily),weekly:makeItems(weekly),achievements:makeItems(achievements),
+xp:0,streak:0,today:t,todayChecks:{},todayAwarded:{},dailyBonusDate:null,weekStart:monday(t),weekChecks:{},weekAwarded:{},weekBonus:false,achievementChecks:{}}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));return s?reconcile(s):fresh()}catch{return fresh()}}
+function reconcile(s){
+ const t=today();let n={...s};
+ if(n.today!==t){const prev=new Date(n.today+'T00:00:00'),cur=new Date(t+'T00:00:00');const gap=Math.round((cur-prev)/86400000);
+   if(gap>1 || (gap===1 && n.dailyBonusDate!==n.today)) n.streak=0;
+   n={...n,today:t,todayChecks:{},todayAwarded:{},dailyBonusDate:null};
+ }
+ const w=monday(t);if(n.weekStart!==w)n={...n,weekStart:w,weekChecks:{},weekAwarded:{},weekBonus:false};
+ return n;
+}
+function App(){
+ const [s,setS]=useState(null),[tab,setTab]=useState('hoy'),[confirm,setConfirm]=useState(false),[toast,setToast]=useState('');
+ useEffect(()=>setS(load()),[]);
+ useEffect(()=>{if(s)localStorage.setItem(KEY,JSON.stringify(s))},[s]);
+ const notify=m=>{setToast(m);setTimeout(()=>setToast(''),1800)};
+ if(!s)return <div className="app">Cargando…</div>;
+ const items=tab==='hoy'?s.daily:tab==='semana'?s.weekly:s.achievements;
+ const checks=tab==='hoy'?s.todayChecks:tab==='semana'?s.weekChecks:s.achievementChecks;
+ const all=items.length>0&&items.every(x=>checks[x.id]);
+ const level=Math.floor(s.xp/LEVEL_XP)+1,into=s.xp%LEVEL_XP,pct=Math.round(into/LEVEL_XP*100);
+ const achDone=s.achievements.filter(x=>s.achievementChecks[x.id]).length;
+ function toggle(item){
+   if(tab==='logros'){
+     if(s.achievementChecks[item.id]){notify('Ese logro ya está conseguido.');return}
+     setS({...s,achievementChecks:{...s.achievementChecks,[item.id]:true},xp:s.xp+item.xp});
+     notify('🏆 ¡Logro conseguido! +'+item.xp+' XP');return;
+   }
+   const isDaily=tab==='hoy', checksKey=isDaily?'todayChecks':'weekChecks', awardedKey=isDaily?'todayAwarded':'weekAwarded';
+   const current=!!s[checksKey][item.id], nextChecks={...s[checksKey],[item.id]:!current};
+   let next={...s,[checksKey]:nextChecks};
+   if(!current && !s[awardedKey][item.id]){next.xp+=item.xp;next[awardedKey]={...s[awardedKey],[item.id]:true};notify('+'+item.xp+' XP');}
+   if(isDaily){
+     const complete=s.daily.length>0&&s.daily.every(x=>nextChecks[x.id]);
+     if(complete&&s.dailyBonusDate!==s.today){next.xp+=DAILY_BONUS;next.streak+=1;next.dailyBonusDate=s.today;notify('🔥 Rutina completa! +'+DAILY_BONUS+' XP');}
+   }else{
+     const complete=s.weekly.length>0&&s.weekly.every(x=>nextChecks[x.id]);
+     if(complete&&!s.weekBonus){next.xp+=WEEK_BONUS;next.weekBonus=true;notify('🏅 Semana completa! +'+WEEK_BONUS+' XP');}
+   }
+   setS(next);
+ }
+ function add(){
+   const input=document.getElementById('newItem'),v=input.value.trim();if(!v)return;
+   const kind=tab==='hoy'?'daily':tab==='semana'?'weekly':'achievements',xp=kind==='achievements'?20:10;
+   setS({...s,[kind]:[...s[kind],{id:id(),label:v,xp}]});input.value='';notify('Actividad agregada');
+ }
+ function remove(item){
+   const kind=tab==='hoy'?'daily':tab==='semana'?'weekly':'achievements';
+   const ck=tab==='hoy'?'todayChecks':tab==='semana'?'weekChecks':'achievementChecks';
+   const checks={...s[ck]};delete checks[item.id];setS({...s,[kind]:s[kind].filter(x=>x.id!==item.id),[ck]:checks});notify('Eliminado');
+ }
+ function reset(){setS(fresh());setConfirm(false);notify('Progreso reiniciado')}
+ const title=tab==='hoy'?'Actividades de hoy':tab==='semana'?'Tareas de esta semana':`Logros y habilidades (${achDone}/${s.achievements.length})`;
+ return <div className="app">
+   <div className="header"><div className="app-title">Mi Plano Diario</div><div className="app-sub">Sistema de rutina y progreso</div></div>
+   <div className="status"><div className="level"><small>NIVEL</small><strong>{level}</strong></div><div className="mid"><div className="bar"><div className="fill" style={{width:pct+'%'}}/></div><div className="xptext">{into} / {LEVEL_XP} XP para nivel {level+1}</div></div><div className="streak"><div className="fire">🔥</div><strong>{s.streak}</strong><small>{s.streak===1?'día':'días'}</small></div></div>
+   <div className="tabs">{[['hoy','Hoy'],['semana','Esta semana'],['logros','Logros']].map(([k,l])=><button className={'tab '+(tab===k?'active':'')} onClick={()=>setTab(k)}>{l}</button>)}</div>
+   {tab==='hoy'&&all&&<div className="banner">Rutina de hoy completada — racha de {s.streak} {s.streak===1?'día':'días'}</div>}
+   {tab==='semana'&&all&&<div className="banner cyan">Semana completa — bono de {WEEK_BONUS} XP aplicado</div>}
+   <div className="panel"><div className="title">{title}</div>{items.map(it=><div className="row" key={it.id}>
+     <div className={'check '+(checks[it.id]?'done':'')} onClick={()=>toggle(it)}></div>
+     <div className={'label '+(checks[it.id]?'done':'')} onClick={()=>toggle(it)}>{it.label}</div><div className="badge">+{it.xp} XP</div>
+     <button className="remove" onClick={()=>remove(it)}>×</button></div>)}
+     <div className="add"><input id="newItem" placeholder={tab==='hoy'?'Agregar actividad de hoy…':tab==='semana'?'Agregar tarea semanal…':'Agregar logro…'} onKeyDown={e=>e.key==='Enter'&&add()}/><button onClick={add}>+</button></div>
+   </div>
+   <div className="info"><strong>El sueño y el tiempo libre no se puntúan aquí.</strong> Meta: 8–10 horas de sueño por noche. El tiempo libre —videojuegos, amigos, no hacer nada— también es parte de un buen día y no necesita casillas.</div>
+   <div className="date">ESCALA 1:1 — {longDate(s.today)}</div>
+   <div className="footer">{confirm?<div className="confirm"><span>¿Reiniciar todo?</span><button className="yes" onClick={reset}>Sí, reiniciar</button><button onClick={()=>setConfirm(false)}>Cancelar</button></div>:<button className="reset" onClick={()=>setConfirm(true)}>↻ Reiniciar progreso</button>}</div>
+   {toast&&<div className="toast">{toast}</div>}
+ </div>
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
+}
+</script>
+</body>
+</html>
