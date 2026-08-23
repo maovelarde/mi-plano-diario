@@ -1,6 +1,6 @@
 <!doctype html><html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#102A43"><link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#102A43"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Mi Organizador Diario NKV</title>
 <style>
 :root{--bg:#102a43;--p:#173b5e;--p2:#102d49;--l:#315879;--i:#edf6ff;--m:#9db6ce;--t:#63d5df;--g:#f2bd52;--ok:#7bd39a;--d:#e47a62}
@@ -169,4 +169,4 @@ function render(){
  ${body}<div class="footer">Mi Organizador Diario NKV · datos guardados en este dispositivo</div>${modal}</div>`
 }
 render();
-</script></body></html>
+</script><script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}</script></body></html>
