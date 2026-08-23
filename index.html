@@ -17,15 +17,16 @@ button,input{font:inherit}button{cursor:pointer}.top{display:flex;justify-conten
 .progressRing:after{content:"";position:absolute;inset:6px;background:#173b5e;border-radius:50%}.progressRing span{position:relative;z-index:1;font-size:11px;font-weight:800}
 .nextBox{margin-top:12px;background:#102d49;border:1px solid #315879;border-radius:12px;padding:11px}.nextLabel{font-size:9px;color:var(--t);text-transform:uppercase;letter-spacing:.08em}.nextText{font-size:13px;font-weight:700;margin-top:3px}.nextXp{font-size:10px;color:var(--g);margin-top:3px}
 .quick{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.quickItem{background:#102d49;border:1px solid #315879;border-radius:10px;padding:9px}.quickItem b{display:block;font-size:12px}.quickItem span{font-size:9px;color:var(--m)}
-</style></head><body><div id="root"></div><script>
+<style>.adminGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.adminCard{background:#102d49;border:1px solid #315879;border-radius:12px;color:inherit;padding:12px;text-align:left}.adminCard b{display:block;margin-top:5px}.adminCard span{display:block;color:var(--m);font-size:10px;margin-top:3px}</style></style></head><body><div id="root"></div><script>
 const KEY="mi-organizador-diario-nkv-2-2",D=[["🛏️ Tender la cama",5],["📚 Revisar agenda y tareas del colegio",10],["✏️ Hacer tareas o estudiar",25],["📖 Leer un rato (aunque no sea tarea)",15],["👕 Organizar ropa y útiles para el día siguiente",10],["🧹 Recoger su espacio y llevar la ropa sucia a su lugar",10],["🏃 Actividad física (mínimo 60 minutos)",20],["👨‍👩‍👦 Un momento en familia sin pantalla",10],["🐕 Sacar a Copito",10]],W=[["🧹 Barrer o aspirar su espacio",15],["🧽 Trapear",15],["👕 Doblar y guardar ropa limpia",10],["🍽️ Ayudar con los platos o la cocina",10],["🛒 Ayudar con las compras o guardar el mercado",10],["🧼 Limpiar su habitación a fondo",20]],A=[["🧺 Aprender a lavar su propia ropa",30],["🍳 Cocinar una comida sencilla por sí mismo",30],["💰 Manejar su propio dinero (mesada o ahorro)",25],["🚌 Usar transporte público de forma segura",25],["🔧 Hacer una tarea pequeña de mantenimiento",20],["🙋 Pedir ayuda cuando algo no se entiende, en vez de rendirse",15]];
 const id=()=>Math.random().toString(36).slice(2,9),today=()=>new Date().toISOString().slice(0,10),make=a=>a.map(x=>({id:id(),label:x[0],xp:x[1]}));
 function fresh(){return{xp:0,streak:0,date:today(),daily:make(D),weekly:make(W),ach:make(A),dc:{},wc:{},ac:{},rewards:[{id:id(),name:"Helado",cost:50,repeat:true,icon:"🍦"},{id:id(),name:"Elegir película familiar",cost:80,repeat:true,icon:"🎬"},{id:id(),name:"Plan especial",cost:150,repeat:false,icon:"⭐"}],redeemed:[],pin:""}}
 let s=JSON.parse(localStorage.getItem(KEY)||"null")||fresh(),tab="hoy",modal="";
-if(s.date!==today()){s.date=today();s.dc={};}
 const save=()=>{localStorage.setItem(KEY,JSON.stringify(s));render()},esc=x=>String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+if(s.date!==today()){s.date=today();s.dc={};}
+if(!s.daily.length && !s._dailyRestored221){s.daily=make(D);s._dailyRestored221=true;localStorage.setItem(KEY,JSON.stringify(s));}
 function count(a,c){return a.filter(x=>c[x.id]).length}function lv(){return Math.floor(s.xp/150)+1}function dxp(){return s.daily.filter(x=>s.dc[x.id]).reduce((n,x)=>n+x.xp,0)}
-function taskCard(title,a,c,k){return `<div class="card"><div class="title">${title}</div>${a.map(x=>`<div class="row"><div class="check ${c[x.id]?"done":""}" onclick="toggle('${k}','${x.id}')"></div><div class="label ${c[x.id]?"doneText":""}" onclick="toggle('${k}','${x.id}')">${esc(x.label)}</div><div class="xp">+${x.xp} XP</div><button class="del" onclick="removeItem('${k}','${x.id}')">×</button></div>`).join("")}<div class="add"><input id="newItem" placeholder="Agregar actividad…"><button onclick="addItem('${k}')">＋</button></div></div>`}
+function taskCard(title,a,c,k){return `<div class="card"><div class="title">${title}</div>${a.map(x=>`<div class="row"><div class="check ${c[x.id]?"done":""}" onclick="toggle('${k}','${x.id}')"></div><div class="label ${c[x.id]?"doneText":""}" onclick="toggle('${k}','${x.id}')">${x.icon||""} ${esc(x.label)}</div><div class="xp">+${x.xp} XP</div></div>`).join("")}</div>`}
 function achCard(){return `<div class="card"><div class="title">Logros y habilidades (${count(s.ach,s.ac)}/${s.ach.length})</div>${s.ach.map(x=>`<div class="row"><div class="check ${s.ac[x.id]?"done":""}" onclick="toggle('ac','${x.id}')"></div><div class="label ${s.ac[x.id]?"doneText":""}" onclick="toggle('ac','${x.id}')">${esc(x.label)}</div><div class="xp">+${x.xp} XP</div></div>`).join("")}<div class="card" style="margin:12px 0 0;background:#102d49"><div class="title">🎁 Recompensas</div>${s.rewards.map(reward).join("")}</div></div>`}
 function reward(r){return `<div class="row reward"><div class="rewardIcon">${r.icon}</div><div class="rewardInfo"><b>${esc(r.name)}</b><div class="cost">${r.cost} XP · ${r.repeat?"repetible":"una vez"}</div></div><button class="small" ${s.xp<r.cost?"disabled":""} onclick="redeem('${r.id}')">Canjear</button></div>`}
 function stats(){return `<div class="card"><div class="title">Resumen de progreso</div><div class="stats"><div class="stat"><b>${s.xp}</b><span>XP total</span></div><div class="stat"><b>${count(s.daily,s.dc)}/${s.daily.length}</b><span>Hoy</span></div><div class="stat"><b>${count(s.weekly,s.wc)}/${s.weekly.length}</b><span>Semana</span></div><div class="stat"><b>${count(s.ach,s.ac)}</b><span>Logros</span></div></div><p class="muted">Datos calculados desde tu progreso guardado en este dispositivo.</p></div><div class="card"><div class="title">🎁 Historial de canjes</div>${s.redeemed.length?s.redeemed.slice().reverse().map(x=>`<div class="row"><div>${x.icon}</div><div class="label">${esc(x.name)}</div><div class="cost">-${x.cost} XP</div></div>`).join(""):'<div class="muted">Todavía no hay canjes.</div>'}</div>`}
@@ -49,15 +50,72 @@ function verifyPin(){
 }
 function openProtectedSettings(first){
  modal=`<div class="modalBack" onclick="if(event.target===this){modal='';render()}"><div class="modal">
- <div class="title">⚙ Configuración</div>
- <p class="muted">${first?"Crea un PIN de 4 dígitos. Esta zona quedará protegida.":"Acceso autorizado."}</p>
- <div class="pin">${[0,1,2,3].map(i=>`<input id="p${i}" maxlength="1" inputmode="numeric" oninput="if(this.value&&this.nextElementSibling)this.nextElementSibling.focus()">`).join("")}</div>
- <div class="add"><button class="primary" onclick="savePin()">Guardar PIN</button><button class="small" onclick="modal='';render()">Cerrar</button></div>
- <hr style="border-color:#315879;margin:18px 0">
- <div class="title">🎁 Administrar recompensas</div>
- ${s.rewards.map(r=>`<div class="row"><div class="rewardIcon">${r.icon}</div><div class="label"><b>${esc(r.name)}</b><br><span class="cost">${r.cost} XP</span></div><button class="small" onclick="editReward('${r.id}')">Editar</button><button class="small danger" onclick="delReward('${r.id}')">×</button></div>`).join("")}
- <div class="add"><input id="rn" placeholder="Nueva recompensa"><input id="rc" type="number" min="1" placeholder="XP"><button onclick="addReward()">＋</button></div>
+ <div class="title">🔐 Control Parental</div>
+ <p class="muted">${first?"Crea un PIN para proteger la administración de la app.":"Acceso de administrador autorizado."}</p>
+ <div class="adminGrid">
+  <button class="adminCard" onclick="adminTasks('daily')">📅<b>Actividades diarias</b><span>Editar, agregar o eliminar</span></button>
+  <button class="adminCard" onclick="adminTasks('weekly')">🗓️<b>Actividades semanales</b><span>Editar, agregar o eliminar</span></button>
+  <button class="adminCard" onclick="adminRewards()">🎁<b>Recompensas</b><span>Gestionar premios y XP</span></button>
+  <button class="adminCard" onclick="adminXP()">⚡<b>XP y progreso</b><span>Corregir o reiniciar</span></button>
+ </div>
+ <div class="add"><button class="primary" onclick="changePin()">🔑 Cambiar PIN</button><button class="small" onclick="modal='';render()">Cerrar</button></div>
  </div></div>`;render()
+}
+function adminTasks(kind){
+ const arr=kind==="daily"?s.daily:s.weekly;
+ modal=`<div class="modalBack" onclick="if(event.target===this){openProtectedSettings(false)}"><div class="modal">
+ <div class="title">${kind==="daily"?"📅 Actividades diarias":"🗓️ Actividades semanales"}</div>
+ <p class="muted">Solo el administrador puede modificar estas actividades.</p>
+ ${arr.map((x,i)=>`<div class="row"><div class="label"><b>${x.icon||"📌"} ${esc(x.label)}</b><br><span class="cost">+${x.xp} XP</span></div><button class="small" onclick="editTask('${kind}',${i})">Editar</button><button class="small danger" onclick="adminDeleteTask('${kind}',${i})">×</button></div>`).join("")}
+ <div class="add"><input id="newTask" placeholder="Nueva actividad"><input id="newXp" type="number" min="1" placeholder="XP"><button onclick="adminAddTask('${kind}')">＋</button></div>
+ <div class="add"><button class="small" onclick="openProtectedSettings(false)">← Volver</button></div>
+ </div></div>`;render()
+}
+function adminAddTask(kind){
+ const label=document.getElementById("newTask").value.trim(), xp=Number(document.getElementById("newXp").value)||10;
+ if(!label)return;
+ const item={id:"admin_"+Date.now(),label,xp,icon:"📌"};
+ if(kind==="daily")s.daily.push(item);else s.weekly.push(item);
+ save();adminTasks(kind);
+}
+function adminDeleteTask(kind,i){
+ if(!confirm("¿Eliminar esta actividad?"))return;
+ const arr=kind==="daily"?s.daily:s.weekly;
+ arr.splice(i,1);save();adminTasks(kind);
+}
+function editTask(kind,i){
+ const arr=kind==="daily"?s.daily:s.weekly, x=arr[i];
+ const label=prompt("Nombre de la actividad",x.label); if(label===null)return;
+ const xp=Number(prompt("XP",x.xp)); if(!label.trim()||!xp)return;
+ x.label=label.trim();x.xp=xp;save();adminTasks(kind);
+}
+function adminRewards(){
+ modal=`<div class="modalBack" onclick="if(event.target===this){openProtectedSettings(false)}"><div class="modal">
+ <div class="title">🎁 Recompensas</div><p class="muted">Solo el administrador puede modificar premios y costos.</p>
+ ${s.rewards.map(r=>`<div class="row"><div class="rewardIcon">${r.icon||"🎁"}</div><div class="label"><b>${esc(r.name)}</b><br><span class="cost">${r.cost} XP</span></div><button class="small" onclick="editReward('${r.id}')">Editar</button><button class="small danger" onclick="delReward('${r.id}')">×</button></div>`).join("")}
+ <div class="add"><input id="rn" placeholder="Nueva recompensa"><input id="rc" type="number" min="1" placeholder="XP"><button onclick="addReward()">＋</button></div>
+ <div class="add"><button class="small" onclick="openProtectedSettings(false)">← Volver</button></div>
+ </div></div>`;render()
+}
+function adminXP(){
+ modal=`<div class="modalBack" onclick="if(event.target===this){openProtectedSettings(false)}"><div class="modal">
+ <div class="title">⚡ XP y progreso</div><p class="muted">Herramientas administrativas para corregir o reiniciar progreso.</p>
+ <div class="add"><input id="xpAdjust" type="number" placeholder="XP a sumar/restar"><button class="primary" onclick="adjustXP()">Aplicar</button></div>
+ <div class="add"><button class="small danger" onclick="resetProgress()">Reiniciar progreso</button><button class="small" onclick="openProtectedSettings(false)">← Volver</button></div>
+ </div></div>`;render()
+}
+function adjustXP(){
+ const n=Number(document.getElementById("xpAdjust").value)||0;
+ s.xp=Math.max(0,s.xp+n);save();modal="";render();
+}
+function resetProgress(){
+ if(!confirm("¿Seguro que quieres reiniciar el progreso? Esta acción no se puede deshacer."))return;
+ s.xp=0;s.streak=0;s.ac={};s.dc={};s.wc={};save();modal="";render();
+}
+function changePin(){
+ const p=prompt("Nuevo PIN de 4 dígitos");
+ if(!/^\d{4}$/.test(p||"")){alert("Usa exactamente 4 números");return}
+ s.pin=p;save();alert("PIN actualizado");openProtectedSettings(false);
 }
 function savePin(){
  const p=[0,1,2,3].map(i=>document.getElementById("p"+i).value).join("");
