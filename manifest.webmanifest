@@ -1,1 +1,1 @@
-{"name":"Mi Organizador Diario NKV","short_name":"Organizador NKV","start_url":"./","display":"standalone","background_color":"#102A43","theme_color":"#102A43","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{"name": "Mi Organizador Diario NKV", "short_name": "Organizador NKV", "start_url": "./", "display": "standalone", "background_color": "#102A43", "theme_color": "#102A43", "icons": [{"src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]}
